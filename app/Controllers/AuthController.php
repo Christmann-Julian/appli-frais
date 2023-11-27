@@ -19,17 +19,18 @@ class AuthController extends Controller
         ]);
         session_start();
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_GET['Login']) && isset($_GET['Password'])) {
 
-            $email = htmlspecialchars($_POST['email']);
-            $password = htmlspecialchars($_POST['password']);
+            //var_dump($_GET);
+
+            $login = htmlspecialchars($_GET['Login']);
+            $password = htmlspecialchars($_GET['Password']);
             $userModel = new UserModel();
-            $user = $userModel->getByMail($email);
+            $user = $userModel->getByLogin($login);
         
             if ($user){
                 if (password_verify($password, $user['password'])) {
                     $_SESSION['id'] = $user['id'];
-                    $_SESSION['email'] = $user['email'];
                     header("Location: ".$this->linkTo("home"));
                     exit;
                 }

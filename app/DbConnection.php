@@ -47,11 +47,11 @@ class DbConnection {
      * @return void
      */
     public function __construct() {
-        $this->host = $_ENV['DB_HOST'];
-        $this->dbname = $_ENV['DB_NAME'];
-        $this->username = $_ENV['DB_USER'];
-        $this->password = $_ENV['DB_PASSWORD'];
-        $this->charset = $_ENV['DB_CHARSET'];
+        $this->host = DB_HOST;
+        $this->dbname = DB_NAME;
+        $this->username = DB_USER;
+        $this->password = DB_PASSWORD;
+        $this->charset = 'utf8';
     }
 
     /**

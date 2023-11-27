@@ -21,10 +21,10 @@ class UserModel {
         $this->db = $dbConnection->connect();
     }
 
-    public function getByMail($email) {
-        $sql = "SELECT * FROM users WHERE email = :email ;";
+    public function getByLogin($login) {
+        $sql = "SELECT * FROM utilisateurs WHERE login = :login ;";
         $req = $this->db->prepare($sql);
-        $req->bindParam(':email', $email);
+        $req->bindParam(':login', $login);
         $req->execute();
         return $req->fetch($this->db::FETCH_ASSOC);
     }
