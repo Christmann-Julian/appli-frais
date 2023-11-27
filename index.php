@@ -15,6 +15,11 @@ switch($page){
 		$controller->login();
         break;
 	}
+	case 'logout':{
+        $controller = new App\Controllers\AuthController();
+		$controller->logout();
+        break;
+	}
 	case 'home' :{
 		$controller = new App\Controllers\HomeController();
 		$controller->index();

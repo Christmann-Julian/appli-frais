@@ -14,7 +14,7 @@ $javascript=[
 <body id="body-pd">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div class="header_user"> <span>John doe</span><div class="header_img"> <img src="assets/img/user.jpg" alt=""> </div></div> 
+        <div class="header_user"> <span><?= $_SESSION['prenom'].' '.$_SESSION['nom'] ?></span><div class="header_img"> <img src="assets/img/user.jpg" alt=""> </div></div> 
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
@@ -27,7 +27,7 @@ $javascript=[
                     <a href="#" class="nav_link"> <i class='bx bx-help-circle nav_icon'></i> <span class="nav_name">Aide</span> </a> 
                 </div>
             </div> 
-            <a href="<?= $this->linkTo('login'); ?>" class="nav_link"> 
+            <a href="<?= $this->linkTo('logout'); ?>" class="nav_link"> 
                 <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Se déconnecter</span> 
             </a>
         </nav>

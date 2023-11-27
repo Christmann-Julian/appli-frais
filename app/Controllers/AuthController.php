@@ -19,26 +19,34 @@ class AuthController extends Controller
         ]);
         session_start();
 
-        if (isset($_GET['Login']) && isset($_GET['Password'])) {
+        $loginError = null;
 
-            //var_dump($_GET);
+        if (isset($_POST['Login']) && isset($_POST['Password'])) {
 
-            $login = htmlspecialchars($_GET['Login']);
-            $password = htmlspecialchars($_GET['Password']);
+            $login = htmlspecialchars($_POST['Login']);
+            $password = htmlspecialchars($_POST['Password']);
             $userModel = new UserModel();
             $user = $userModel->getByLogin($login);
         
             if ($user){
-                if (password_verify($password, $user['password'])) {
+                if (password_verify($password, $user['mdp'])) {
                     $_SESSION['id'] = $user['id'];
+                    $_SESSION['nom'] = $user['nom'];
+                    $_SESSION['prenom'] = $user['prenom'];
                     header("Location: ".$this->linkTo("home"));
                     exit;
+                }else{
+                    $loginError = 'Identifiant ou mot de passe incorrect !';
                 }
+            }else{
+                $loginError = 'Identifiant ou mot de passe incorrect !';
             }
             
         }
 
-        $this->render('auth/login.php');
+        $this->render('auth/login.php', [
+            'loginError' => $loginError
+        ]);
         return $this;
     }
 
@@ -59,7 +67,7 @@ class AuthController extends Controller
             );
         }
         session_destroy();
-        header("Location: ".$this->linkTo("auth.login"));
+        header("Location: ".$this->linkTo("login"));
         exit;
     }
 }

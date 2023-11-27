@@ -13,10 +13,10 @@ class HomeController extends Controller
     {
         session_start();
 
-        //if (!isset($_SESSION['id'])) {
-        //    header("Location: ".$this->linkTo("login"));
-        //    exit; 
-        //}
+        if (!isset($_SESSION['id'])) {
+            header("Location: ".$this->linkTo("login"));
+            exit; 
+        }
 
         $this->render('home/index.php');
         return $this;
