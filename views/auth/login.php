@@ -10,7 +10,7 @@ $javascript=[
 ?>
 <div class="loginBox"> <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" height="100px" width="100px">
         <h3>Appli frais</h3>
-        <form action="index.php" method="get">
+        <form action="index.php?page=login" method="post">
             <div class="inputBox"> 
                 <input type="hidden" name="page" value="login">
                 <input id="uname" type="text" name="Login" placeholder="Identifiant"> 
