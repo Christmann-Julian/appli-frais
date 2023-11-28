@@ -13,14 +13,15 @@
         }  
         ?>
     </head>
-    <?= $content ?>
+    <body id="body-pd">
+        <?= $content ?>
 
-    <?php 
-    if(isset($javascript)){
-        foreach ($javascript as $js) {
-            echo($js);
-        }
-    }  
-    ?>
-</body>
+        <?php 
+        if(isset($javascript)){
+            foreach ($javascript as $js) {
+                echo($js);
+            }
+        }  
+        ?>
+    </body>
 </html>

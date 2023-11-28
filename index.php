@@ -24,5 +24,9 @@ switch($page){
 		$controller = new App\Controllers\HomeController();
 		$controller->index();
         break;
+	}default :{
+		$controller = new App\Controllers\Controller();
+		$controller->render("error404.php");
+		break;
 	}
 }

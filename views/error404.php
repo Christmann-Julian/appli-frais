@@ -1,0 +1,1 @@
+<h1 style="text-align: center;">Erreur 404 : page introuvable</h1>
