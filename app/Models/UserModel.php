@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * UserModel
+ * 
+ * UserModel is a user model
+ * 
+ * @author Julian CHRISTMANN
+ * @package jtg/appli-frais
+ */
+
 namespace App\Models;
 
 class UserModel {
@@ -21,7 +30,8 @@ class UserModel {
         $this->db = $dbConnection->connect();
     }
 
-    public function getByLogin($login) {
+    public function getByLogin($login) 
+    {
         $sql = "SELECT * FROM utilisateurs WHERE login = :login ;";
         $req = $this->db->prepare($sql);
         $req->bindParam(':login', $login);

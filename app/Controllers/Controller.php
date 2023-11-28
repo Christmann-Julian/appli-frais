@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Controller
+ * 
+ * Controller is a controller
+ * 
+ * @author Julian CHRISTMANN
+ * @package jtg/appli-frais
+ */
+
 namespace App\Controllers;
 
 class Controller

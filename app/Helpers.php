@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Helpers
+ * 
+ * Helpers gives methods to help developer
+ * 
+ * @author Julian CHRISTMANN
+ * @package jtg/appli-frais
+ */
+
 namespace App;
 
 class Helpers

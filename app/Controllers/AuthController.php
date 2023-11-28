@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * AuthController
+ * 
+ * AuthController is an authentication controller
+ * 
+ * @author Julian CHRISTMANN
+ * @package jtg/appli-frais
+ */
+
 namespace App\Controllers;
 
 use App\Models\UserModel;
@@ -7,7 +16,7 @@ use App\Models\UserModel;
 class AuthController extends Controller
 {
     /**
-     * Return the view associate with the route auth.login
+     * Return the view associate with the route login
      *
      * @return self|void
      */
@@ -51,7 +60,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Return the view associate with the route auth.logout
+     * Return the view associate with the route logout
      *
      * @return void
      */

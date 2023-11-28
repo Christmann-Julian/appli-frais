@@ -1,12 +1,19 @@
 <?php
 
+/**
+ * Handles routing of HTTP requests to the appropriate controllers
+ * 
+ * @author Julian CHRISTMANN
+ * @package jtg/appli-frais
+ */
 
 require('vendor/autoload.php');
 require('config.php');
 
 if(!isset($_REQUEST['page'])){
 	$_REQUEST['page'] = 'login';
-}	 
+}
+
 $page = $_REQUEST['page'];
 
 switch($page){

@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * DbConnection
+ * 
+ * DbConnection creates a connection to the database
+ * 
+ * @author Julian CHRISTMANN
+ * @package jtg/appli-frais
+ */
+
 namespace App;
 
 use PDO;

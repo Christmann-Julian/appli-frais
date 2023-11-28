@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * HomeController
+ * 
+ * HomeController is a home controller
+ * 
+ * @author Julian CHRISTMANN
+ * @package jtg/appli-frais
+ */
+
 namespace App\Controllers;
 
 class HomeController extends Controller
