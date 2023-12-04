@@ -70,6 +70,7 @@ applis-frais/
 **Fernandes Gabriel**
 
 - <https://github.com/gabrielfds95>
+- <https://sites.google.com/view/portfolio-gabrielfernandes/accueil>
 
 **1rawski**
 
