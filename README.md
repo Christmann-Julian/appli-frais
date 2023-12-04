@@ -71,6 +71,10 @@ applis-frais/
 
 - <https://github.com/gabrielfds95>
 
+**1rawski**
+
+- <https://github.com/1rawski>
+
 ## Copyright et licence
 
 Code et documentation copyright 2023-2024. Le Code du projet est publié sous [Licence MIT ](https://fr.wikipedia.org/wiki/Licence_MIT).
