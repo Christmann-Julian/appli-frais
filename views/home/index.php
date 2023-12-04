@@ -31,6 +31,6 @@ $javascript=[
         </a>
     </nav>
 </div>
-<div class="height-100 bg-light">
+<div class="height-100 ">
     <h4>Mes frais</h4>
 </div>
