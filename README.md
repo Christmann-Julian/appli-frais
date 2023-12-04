@@ -67,7 +67,7 @@ applis-frais/
 
 - <https://github.com/Christmann-Julian>
 
-**gabrielfds95**
+**Fernandes Gabriel**
 
 - <https://github.com/gabrielfds95>
 
