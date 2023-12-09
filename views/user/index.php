@@ -36,26 +36,34 @@ $javascript=[
     <form>
         <div class="row">
             <div class="col-md-6 col-sm-12 mb-3">
-                <label for="nom" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="nom" value="Doe" required>
+                <label for="lastName" class="form-label">Nom</label>
+                <input type="text" class="form-control" name="lastName" id="lastName" value="Doe" required>
             </div>
             <div class="col-md-6 col-sm-12 mb-3">
-                <label for="prenom" class="form-label">Prénom</label>
-                <input type="text" class="form-control" id="prenom" value="John" required>
+                <label for="firstName" class="form-label">Prénom</label>
+                <input type="text" class="form-control" name="firstName" id="firstName" value="John" required>
             </div>
         </div>
         <div class="mb-3">
-            <label for="ville" class="form-label">Ville</label>
-            <input type="text" class="form-control" id="ville" value="Paris" required>
+            <label for="city" class="form-label">Ville</label>
+            <input type="text" class="form-control" name="city" id="city" value="Paris" required>
         </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+    <h4 class="mt-3">Informations de connexion</h4>
+    <form>  
         <div class="mb-3">
             <label for="login" class="form-label">Identifiant</label>
-            <input type="text" class="form-control" id="login"  value="jDoe" required>
+            <input type="text" class="form-control" name="login" id="login"  value="jDoe" required>
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Mot de passe</label>
+            <label for="password" class="form-label">Nouveau mot de passe</label>
             <input type="password" class="form-control" id="password" aria-describedby="passwordHelp">
-            <div id="passwordHelp" class="form-text">Si vous laisser ce champ vide, votre ancien mot de passe sera garder.</div>
+            <div id="passwordHelp" class="form-text">Si vous laissez ce champ vide, votre ancien mot de passe sera gardé.</div>
+        </div>
+        <div class="mb-3">
+            <label for="confirm-password" class="form-label">Confirmation du mot de passe</label>
+            <input type="password" class="form-control" id="confirm-password">
         </div>
         <button type="submit" class="btn btn-primary">Modifier</button>
     </form>
