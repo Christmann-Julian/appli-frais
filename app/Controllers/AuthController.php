@@ -42,7 +42,7 @@ class AuthController extends Controller
                     $_SESSION['id'] = $user['id'];
                     $_SESSION['nom'] = $user['nom'];
                     $_SESSION['prenom'] = $user['prenom'];
-                    header("Location: ".$this->linkTo("home"));
+                    header("Location: ".$this->linkTo("expense"));
                     exit;
                 }else{
                     $loginError = 'Identifiant ou mot de passe incorrect !';

@@ -5,7 +5,7 @@
 	--nav-width: 68px;
 	--first-color: #4723D9;
 	--first-color-light: #AFA5D9;
-	--white-color: #F7F6FB;
+	--white-color: #FFF;
 	--body-font: 'Nunito', sans-serif;
 	--normal-font-size: 1rem;
 	--z-fixed: 100
@@ -132,7 +132,7 @@ a {
 	font-size: 1.25rem
 }
 
-.show {
+.show-nav {
 	left: 0
 }
 
@@ -182,7 +182,7 @@ a {
 		padding: 1rem 1rem 0 0
 	}
 
-	.show {
+	.show-nav {
 		width: calc(var(--nav-width) + 156px)
 	}
 

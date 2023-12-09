@@ -1,9 +1,9 @@
 <?php
 
 /**
- * HomeController
+ * UserController
  * 
- * HomeController is a home controller
+ * UserController is a User controller
  * 
  * @author Julian CHRISTMANN
  * @package jtg/appli-frais
@@ -11,10 +11,10 @@
 
 namespace App\Controllers;
 
-class HomeController extends Controller
+class UserController extends Controller
 {
     /**
-     * Return the view associate with the route home
+     * Return the view associate with the route user
      *
      * @return self
      */
@@ -27,7 +27,7 @@ class HomeController extends Controller
             exit; 
         }
 
-        $this->render('home/index.php');
+        $this->render('user/index.php');
         return $this;
     }
 
