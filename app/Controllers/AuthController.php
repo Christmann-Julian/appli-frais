@@ -42,6 +42,7 @@ class AuthController extends Controller
                     $_SESSION['id'] = $user['id'];
                     $_SESSION['nom'] = $user['nom'];
                     $_SESSION['prenom'] = $user['prenom'];
+                    $_SESSION['role'] = $user['role'];
                     header("Location: ".$this->linkTo("expense"));
                     exit;
                 }else{

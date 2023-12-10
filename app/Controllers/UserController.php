@@ -55,6 +55,8 @@ class UserController extends Controller
 
             if(empty($errors)){
                 $userModel->updateProfile($_SESSION['id'], $lastname, $firstname, $city);
+                $_SESSION['nom'] = $lastname;
+                $_SESSION['prenom'] = $firstname;
                 header("Location: ".$this->linkTo("user", "success=Votre profil a été modifié"));
                 exit;
             }

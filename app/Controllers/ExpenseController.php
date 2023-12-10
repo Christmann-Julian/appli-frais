@@ -40,7 +40,7 @@ class ExpenseController extends Controller
     {
         session_start();
 
-        if (!isset($_SESSION['id'])) {
+        if (!isset($_SESSION['id']) || $_SESSION['role'] != "visiteur") {
             header("Location: ".$this->linkTo("login"));
             exit; 
         }
