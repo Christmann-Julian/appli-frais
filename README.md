@@ -42,9 +42,14 @@ applis-frais/
 │    ├── Controllers/
 │    │    ├── AuthController.php
 │    │    ├── Controller.php
-│    │    └── HomeController.php
+│    │    ├── ExpenseController.php
+│    │    ├── HelpController.php
+│    │    └── UserController.php
 │    ├── Models/
+│    │    ├── ExpenseModel.php
 │    │    └── UserModel.php
+│    ├── Forms/
+│    │    └── FormValidation.php
 │    ├── DbConnection.php
 │    └── Helpers.php
 ├── assets/
@@ -52,7 +57,13 @@ applis-frais/
 ├── views/
 │    ├── auth/
 │    │    └── login.php
-│    ├── home/
+│    ├── expense/
+│    │    ├── add.php
+│    │    ├── edit.php
+│    │    └── index.php
+│    ├── help/
+│    │    └── index.php
+│    ├── user/
 │    │    └── index.php
 │    ├── default.php
 │    └── error404.php
