@@ -189,4 +189,9 @@ a {
 	.body-pd {
 		padding-left: calc(var(--nav-width) + 188px)
 	}
+
+	.flex-right-col{
+		display: flex;
+		justify-content: end;
+	}
 }

@@ -35,10 +35,10 @@ $javascript=[
 </div>
 <div class="height-100">
     <div class="row pt-2">
-        <div class="col-md-7 col-sm-12">
+        <div class="col-md-6 col-sm-12">
             <h4>Mes frais</h4>
         </div>
-        <div class="col-md-5 col-sm-12">
+        <div class="col-md-6 col-sm-12 flex-right-col">
             <form action="#" method="post">
                 <div class="row">
                     <div class="col-md-6 col-sm-12 mb-3">

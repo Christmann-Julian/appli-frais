@@ -107,24 +107,20 @@ $javascript=[
                 </div>
             </div>
         </div>
-        <h4>Frais hors forfait</h4>
+        <div class="row mb-3 mt-3">
+            <h4>Frais hors forfait</h4>
+        </div>
+        <div id="containerHF">
+            <!-- ligne de frais hors forfait -->
+        </div>
         <div class="row">
-            <div class="col-md-4 col-sm-12 mb-3">
-                <label for="fhdate1" class="form-label">Date</label>
-                <input name="fhdate1" id="fhdate1" class="form-control" type="date" required>
+            <div class="col-md-6 col-sm-12">
+                <button type="submit" class="btn btn-primary mb-2">Ajouter fiche de frais</button>
             </div>
-            <div class="col-md-4 col-sm-12 mb-3">
-                <label for="fhlib1" class="form-label">Libellé</label>
-                <input name="fhlib1" type="text" class="form-control" id="fhlib1" required>
-            </div>
-            <div class="col-md-4 col-sm-12 mb-3">
-                <label for="fhM1" class="form-label">Montant</label>
-                <div class="input-group">
-                    <input name="fhM1" type="number" class="form-control" id="fhM1" min="0" step="0.01" required>
-                    <span class="input-group-text">€</span>
-                </div>
+            <div class="col-md-6 col-sm-12 flex-right-col">
+                <button class="btn btn-primary me-2 mb-2" onclick="addHf()">Ajouter ligne Frais hors Forfait</button>
+                <button class="btn btn-danger mb-2" onclick="deleteHf()">Supprimer ligne hors forfait</button>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Ajouter fiche de frais</button>
     </form>
 </div>
