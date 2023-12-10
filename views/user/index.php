@@ -32,38 +32,73 @@ $javascript=[
     </nav>
 </div>
 <div class="height-100">
+    <?php if(isset($_GET['success'])){ ?>
+        <div class="alert alert-success">
+            <?= htmlspecialchars($_GET['success']) ?>
+        </div>
+    <?php } ?>
     <h4>Profil</h4>
-    <form>
+    <form  action="index.php?page=user" method="post">
         <div class="row">
             <div class="col-md-6 col-sm-12 mb-3">
                 <label for="lastName" class="form-label">Nom</label>
-                <input type="text" class="form-control" name="lastName" id="lastName" value="Doe" required>
+                <input type="text" class="form-control <?= $valid = isset($errors['lastname']) ? "is-invalid" : "" ?>" name="lastName" id="lastName" value="<?= $user["nom"] ?>" required>
+                <?php if(isset($errors['lastname'])){ ?>
+                    <div class="invalid-feedback">
+                        <?= $errors['lastname'] ?>
+                    </div>
+                <?php } ?>
             </div>
             <div class="col-md-6 col-sm-12 mb-3">
                 <label for="firstName" class="form-label">Prénom</label>
-                <input type="text" class="form-control" name="firstName" id="firstName" value="John" required>
+                <input type="text" class="form-control <?= $valid = isset($errors['firstname']) ? "is-invalid" : "" ?>" name="firstName" id="firstName" value="<?= $user["prenom"] ?>" required>
+                <?php if(isset($errors['firstname'])){ ?>
+                    <div class="invalid-feedback">
+                        <?= $errors['firstname'] ?>
+                    </div>
+                <?php } ?>
             </div>
         </div>
         <div class="mb-3">
             <label for="city" class="form-label">Ville</label>
-            <input type="text" class="form-control" name="city" id="city" value="Paris" required>
+            <input type="text" class="form-control <?= $valid = isset($errors['city']) ? "is-invalid" : "" ?>" name="city" id="city" value="<?= $user["ville"] ?>" required>
+            <?php if(isset($errors['city'])){ ?>
+                <div class="invalid-feedback">
+                    <?= $errors['city'] ?>
+                </div>
+            <?php } ?>
         </div>
         <button type="submit" class="btn btn-primary">Modifier</button>
     </form>
     <h4 class="mt-3">Informations de connexion</h4>
-    <form>  
+    <form action="index.php?page=user" method="post">  
         <div class="mb-3">
             <label for="login" class="form-label">Identifiant</label>
-            <input type="text" class="form-control" name="login" id="login"  value="jDoe" required>
+            <input type="text" class="form-control <?= $valid = isset($errors['login']) ? "is-invalid" : "" ?>" name="login" id="login"  value="<?= $user["login"] ?>" required>
+            <?php if(isset($errors['login'])){ ?>
+                <div class="invalid-feedback">
+                    <?= $errors['login'] ?>
+                </div>
+            <?php } ?>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Nouveau mot de passe</label>
-            <input type="password" class="form-control" id="password" aria-describedby="passwordHelp">
+            <input type="password" class="form-control <?= $valid = isset($errors['password']) ? "is-invalid" : "" ?>" name="password" id="password" aria-describedby="passwordHelp">
             <div id="passwordHelp" class="form-text">Si vous laissez ce champ vide, votre ancien mot de passe sera gardé.</div>
+            <?php if(isset($errors['password'])){ ?>
+                <div class="invalid-feedback">
+                    <?= $errors['password'] ?>
+                </div>
+            <?php } ?>
         </div>
         <div class="mb-3">
             <label for="confirm-password" class="form-label">Confirmation du mot de passe</label>
-            <input type="password" class="form-control" id="confirm-password">
+            <input type="password" class="form-control <?= $valid = isset($errors['confirm-password']) ? "is-invalid" : "" ?>" name="confirm-password" id="confirm-password">
+            <?php if(isset($errors['confirm-password'])){ ?>
+                <div class="invalid-feedback">
+                    <?= $errors['confirm-password'] ?>
+                </div>
+            <?php } ?>
         </div>
         <button type="submit" class="btn btn-primary">Modifier</button>
     </form>

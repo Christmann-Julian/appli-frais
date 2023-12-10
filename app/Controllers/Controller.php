@@ -40,8 +40,13 @@ class Controller
      *
      * @return string
      */
-    public function linkTo(string $routeName, array $params = []):string
+    public function linkTo(string $routeName, ?string $params = null):string
     {
-        return '?page='.$routeName;
+        if($params == null){
+            return '?page='.$routeName;
+        }else{
+            return '?page='.$routeName.'&'.$params;
+        }
+        
     }
 }
