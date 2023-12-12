@@ -20,7 +20,7 @@ $javascript=[
         <div> <a href="#" class="nav_logo"> 
             <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Appli frais</span> </a>
             <div class="nav_list"> 
-                <a href="<?= $this->linkTo('expense'); ?>" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Mes frais</span> </a> 
+                <a href="<?= $this->linkTo('expense'); ?>" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Consulter</span> </a> 
                 <?php if($_SESSION['role'] == "visiteur" ){ ?>
                     <a href="<?= $this->linkTo('expense_add'); ?>" class="nav_link"> <i class='bx bx-add-to-queue nav_icon'></i> <span class="nav_name">Ajouter</span> </a>
                 <?php } ?> 
@@ -39,12 +39,12 @@ $javascript=[
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Mes frais
+                    Consulter
                 </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>Dans l’onglet « mes frais », l’utilisateur, comptable comme visiteur pourront retrouver leurs frais.</strong> Le visiteur aura ses frais et le comptable aura les frais de tous les visiteurs inscrit sur le site.
+                    <strong>Dans l’onglet « Consulter », l’utilisateur, comptable comme visiteur pourront retrouver leurs frais.</strong> Le visiteur aura ses frais et le comptable aura les frais de tous les visiteurs inscrit sur le site.
                 </div>
             </div>
         </div>
