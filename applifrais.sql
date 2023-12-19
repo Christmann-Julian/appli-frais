@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 10 déc. 2023 à 17:55
+-- Généré le : mar. 12 déc. 2023 à 10:56
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.1.24
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `etat` (
   `id` int NOT NULL AUTO_INCREMENT,
   `libelle` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `etat`
@@ -59,13 +59,13 @@ CREATE TABLE IF NOT EXISTS `fichedefrais` (
   `idUtilisateur` int NOT NULL,
   `idEtat` int NOT NULL,
   `idFraisforfait` int NOT NULL,
-  `idFraishorsforfait` int NOT NULL,
+  `idFraishorsforfait` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idEtat` (`idEtat`),
   KEY `idUtilisateur` (`idUtilisateur`),
   KEY `idFraisforfait` (`idFraisforfait`),
   KEY `idFraishorsforfait` (`idFraishorsforfait`)
-) ENGINE=InnoDB ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `fraisforfait` (
   `montant` float NOT NULL,
   `total` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -95,8 +95,10 @@ CREATE TABLE IF NOT EXISTS `fraishorsforfait` (
   `date` date NOT NULL,
   `libelle` varchar(255) NOT NULL,
   `montant` float NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB ;
+  `idFicheDeFrais` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idFicheDeFrais` (`idFicheDeFrais`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -115,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `role` varchar(255) NOT NULL,
   `ville` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `utilisateurs`
@@ -135,8 +137,13 @@ INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `login`, `mdp`, `date_embauch
 ALTER TABLE `fichedefrais`
   ADD CONSTRAINT `fichedefrais_ibfk_1` FOREIGN KEY (`idEtat`) REFERENCES `etat` (`id`),
   ADD CONSTRAINT `fichedefrais_ibfk_2` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateurs` (`id`),
-  ADD CONSTRAINT `fichedefrais_ibfk_3` FOREIGN KEY (`idFraisforfait`) REFERENCES `fraisforfait` (`id`),
-  ADD CONSTRAINT `fichedefrais_ibfk_4` FOREIGN KEY (`idFraishorsforfait`) REFERENCES `fraishorsforfait` (`id`);
+  ADD CONSTRAINT `fichedefrais_ibfk_3` FOREIGN KEY (`idFraisforfait`) REFERENCES `fraisforfait` (`id`);
+
+--
+-- Contraintes pour la table `fraishorsforfait`
+--
+ALTER TABLE `fraishorsforfait`
+  ADD CONSTRAINT `fraishorsforfait_ibfk_1` FOREIGN KEY (`idFicheDeFrais`) REFERENCES `fichedefrais` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

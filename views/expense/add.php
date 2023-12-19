@@ -34,11 +34,11 @@ $javascript=[
 </div>
 <div class="height-100 container">
     <h4>Frais forfait</h4>
-    <form id="formAdd">
+    <form id="formAdd" action="index.php?page=expense_add" method="post">
         <div class="row">
             <div class="col-md-3 col-sm-12 mb-3">
                 <label for="ffnuite" class="form-label">Frais</label>
-                <input name="ffnuite" id="ffnuite" class="form-control" type="text" value="Nuitée" aria-label="Nuitée" required disabled readonly>
+                <input name="ffnuite" id="ffnuite" class="form-control" type="text" value="Nuitée" aria-label="Nuitée" required readonly>
             </div>
             <div class="col-md-3 col-sm-12 mb-3">
                 <label for="ffnuiteQte" class="form-label">Quantité</label>
@@ -54,7 +54,7 @@ $javascript=[
             <div class="col-md-3 col-sm-12 mb-3">
                 <label for="ffnuiteTot" class="form-label">Total</label>
                 <div class="input-group">
-                    <input name="ffnuiteTot" type="number" value="0" class="form-control" id="ffnuiteTot" aria-label="Total Nuitée" required disabled readonly>
+                    <input name="ffnuiteTot" type="number" value="0" class="form-control" id="ffnuiteTot" aria-label="Total Nuitée" required readonly>
                     <span class="input-group-text">€</span>
                 </div>
             </div>
@@ -62,7 +62,7 @@ $javascript=[
         <div class="row">
             <div class="col-md-3 col-sm-12 mb-3">
                 <label for="ffrepas" class="form-label">Frais</label>
-                <input name="ffrepas" id="ffrepas" class="form-control" type="text" value="Repas Midi" aria-label="Repas Midi" required disabled readonly>
+                <input name="ffrepas" id="ffrepas" class="form-control" type="text" value="Repas Midi" aria-label="Repas Midi" required readonly>
             </div>
             <div class="col-md-3 col-sm-12 mb-3">
                 <label for="ffrepasQte" class="form-label">Quantité</label>
@@ -78,7 +78,7 @@ $javascript=[
             <div class="col-md-3 col-sm-12 mb-3">
                 <label for="ffrepasTot" class="form-label">Total</label>
                 <div class="input-group">
-                    <input name="ffrepasTot" type="number" value="0" class="form-control" id="ffrepasTot" aria-label="Total Repas Midi" required disabled readonly>
+                    <input name="ffrepasTot" type="number" value="0" class="form-control" id="ffrepasTot" aria-label="Total Repas Midi" required readonly>
                     <span class="input-group-text">€</span>
                 </div>
             </div>
@@ -86,7 +86,7 @@ $javascript=[
         <div class="row">
             <div class="col-md-3 col-sm-12 mb-3">
                 <label for="ffkilo" class="form-label">Frais</label>
-                <input name="ffkilo" id="ffkilo" class="form-control" type="text" value="Kilométrage" aria-label="Kilométrage" required disabled readonly>
+                <input name="ffkilo" id="ffkilo" class="form-control" type="text" value="Kilométrage" aria-label="Kilométrage" required readonly>
             </div>
             <div class="col-md-3 col-sm-12 mb-3">
                 <label for="ffkiloQte" class="form-label">Quantité</label>
@@ -102,7 +102,7 @@ $javascript=[
             <div class="col-md-3 col-sm-12 mb-3">
                 <label for="ffkiloTot" class="form-label">Total</label>
                 <div class="input-group">
-                    <input name="ffkiloTot" type="number" value="0" class="form-control" id="ffkiloTot" aria-label="Total Kilométrage" required disabled readonly>
+                    <input name="ffkiloTot" type="number" value="0" class="form-control" id="ffkiloTot" aria-label="Total Kilométrage" required readonly>
                     <span class="input-group-text">€</span>
                 </div>
             </div>
