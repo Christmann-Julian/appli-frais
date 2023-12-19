@@ -66,51 +66,25 @@ $javascript=[
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <?php if($_SESSION['role'] == "compta" ){ ?>
-                        <td>Mark</td>
+                <?php if($expenses){ ?>
+                    <?php foreach($expenses as $e){ ?>
+                        <tr>
+                            <th scope="row"><?php echo($e['id']) ?></th>
+                            <?php if($_SESSION['role'] == "compta" ){ ?>
+                                <td><?php echo($e['prenom']." ".$e['nom']) ?></td>
+                            <?php } ?>
+                            <td><span class="badge bg-primary"><?php echo($e['libelle']) ?></span></td>
+                            <td><?php echo(\App\Helpers::convertMonth($e['mois'])) ?></td>
+                            <td><?php echo($e['total']."€") ?></td>
+                            <td>
+                                <a href="#" class="btn btn-primary me-1" role="button"><i class='bx bx-edit'></i></a>
+                                <?php if($_SESSION['role'] == "visiteur" ){ ?>
+                                    <a href="#" class="btn btn-danger" role="button"><i class='bx bx-trash'></i></a>
+                                <?php } ?>
+                            </td>
+                        </tr>
                     <?php } ?>
-                    <td><span class="badge bg-primary">En cours</span></td>
-                    <td>12/2023</td>
-                    <td>127,39 €</td>
-                    <td>
-                        <a href="#" class="btn btn-primary me-1" role="button"><i class='bx bx-edit'></i></a>
-                        <?php if($_SESSION['role'] == "visiteur" ){ ?>
-                            <a href="#" class="btn btn-danger" role="button"><i class='bx bx-trash'></i></a>
-                        <?php } ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <?php if($_SESSION['role'] == "compta" ){ ?>
-                        <td>Jacob</td>
-                    <?php } ?>
-                    <td><span class="badge bg-success">Validé</span></td>
-                    <td>07/2023</td>
-                    <td>89,65€</td>
-                    <td>
-                        <a href="#" class="btn btn-primary me-1" role="button"><i class='bx bx-edit'></i></a>
-                        <?php if($_SESSION['role'] == "visiteur" ){ ?>
-                            <a href="#" class="btn btn-danger" role="button"><i class='bx bx-trash'></i></a>
-                        <?php } ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <?php if($_SESSION['role'] == "compta" ){ ?>
-                        <td>Larry</td>
-                    <?php } ?>
-                    <td><span class="badge bg-danger">Refusé</span></td>
-                    <td>10/2023</td>
-                    <td>15,56€</td>
-                    <td>
-                        <a href="#" class="btn btn-primary me-1" role="button"><i class='bx bx-edit'></i></a>
-                        <?php if($_SESSION['role'] == "visiteur" ){ ?>
-                            <a href="#" class="btn btn-danger" role="button"><i class='bx bx-trash'></i></a>
-                        <?php } ?>
-                    </td>
-                </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>

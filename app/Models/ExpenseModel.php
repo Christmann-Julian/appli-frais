@@ -30,6 +30,37 @@ class ExpenseModel {
         $this->db = $dbConnection->connect();
     }
 
+    public function getAll() 
+    {
+        $sql = "SELECT f.id, f.mois, f.total, f.date, e.libelle, u.nom, u.prenom  FROM fichedefrais AS f
+            JOIN utilisateurs AS u ON f.idUtilisateur = u.id
+            JOIN etat AS e ON f.idEtat = e.id ;";
+        $req = $this->db->prepare($sql);
+        $req->execute();
+        return $req->fetchAll($this->db::FETCH_ASSOC);
+    }
+
+    public function getAllByUser($userId) 
+    {
+        $sql = "SELECT f.id, f.mois, f.total, f.date, e.libelle, u.nom, u.prenom  FROM fichedefrais AS f
+            JOIN utilisateurs AS u ON f.idUtilisateur = u.id
+            JOIN etat AS e ON f.idEtat = e.id
+            WHERE idUtilisateur = :userId  ;";
+        $req = $this->db->prepare($sql);
+        $req->bindParam('userId', $userId);
+        $req->execute();
+        return $req->fetchAll($this->db::FETCH_ASSOC);
+    }
+
+    public function getById($id) 
+    {
+        $sql = "SELECT * FROM fichedefrais WHERE id = :id ;";
+        $req = $this->db->prepare($sql);
+        $req->bindParam(':id', $id);
+        $req->execute();
+        return $req->fetch($this->db::FETCH_ASSOC);
+    }
+
     public function CreateExpense($userId, $ffnuite, $ffrepas, $ffkilo, $fraisHorsForfait) 
     {
         $sqlFiche= "INSERT INTO `fichedefrais`(`mois`, `total`, `date`, `idUtilisateur`, `idEtat`) VALUES (MONTH(CURDATE()), 0, CURDATE(), :userId, 1);";

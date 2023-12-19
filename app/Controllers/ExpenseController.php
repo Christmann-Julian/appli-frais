@@ -29,7 +29,17 @@ class ExpenseController extends Controller
             exit; 
         }
 
-        $this->render('expense/index.php');
+        $expenseModel = new ExpenseModel();
+
+        if($_SESSION['role'] == "visiteur"){
+            $expenses = $expenseModel->getAllByUser($_SESSION['id']);
+        }else{
+            $expenses = $expenseModel->getAll();
+        }
+
+        $this->render('expense/index.php', [
+            "expenses" => $expenses
+        ]);
         return $this;
     }
 
@@ -71,7 +81,7 @@ class ExpenseController extends Controller
 
             $i = 1;
             $fraisHorsForfait = array();
-            
+
             while(isset($_POST['fhdate'.$i]) && isset($_POST['fhlib'.$i]) && isset($_POST['fhM'.$i])){
                 $fraisHorsForfait[$i]=[$_POST['fhdate'.$i], $_POST['fhlib'.$i], $_POST['fhM'.$i]];
                 $i++;
