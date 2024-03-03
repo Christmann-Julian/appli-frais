@@ -81,18 +81,73 @@ class ExpenseController extends Controller
 
             $i = 1;
             $fraisHorsForfait = array();
+            $tot = $ffnuite["tot"] + $ffrepas["tot"] + $ffkilo["tot"];
 
             while(isset($_POST['fhdate'.$i]) && isset($_POST['fhlib'.$i]) && isset($_POST['fhM'.$i])){
                 $fraisHorsForfait[$i]=[$_POST['fhdate'.$i], $_POST['fhlib'.$i], $_POST['fhM'.$i]];
+                $tot+=$_POST['fhM'.$i];
                 $i++;
             }
 
             $expenseModel = new ExpenseModel();
-            $expenseModel->CreateExpense( $_SESSION['id'], $ffnuite, $ffrepas, $ffkilo, $fraisHorsForfait);
+            $expenseModel->CreateExpense( $_SESSION['id'], $ffnuite, $ffrepas, $ffkilo, $fraisHorsForfait, $tot);
         }
 
         $this->render('expense/add.php');
         return $this;
+    }
+
+    /**
+     * Return the view associate with the route expense_edit
+     *
+     * @return self
+     */
+    public function edit(): self
+    {
+        session_start();
+
+        if (!isset($_SESSION['id'])) {
+            header("Location: ".$this->linkTo("login"));
+            exit; 
+        }
+
+        if(!isset($_GET['id'])){
+            header("Location: ".$this->linkTo("expense"));
+            exit; 
+        }
+
+        $expenseModel = new ExpenseModel();
+        $expense = $expenseModel->getById($_GET['id']);
+
+        $this->render('expense/edit.php', ['expense' => $expense]);
+        return $this;
+    }
+
+    /**
+     * Delete the expense associate to the id in parameter GET
+     *
+     * @return void
+     */
+    public function delete(): void
+    {
+        session_start();
+
+        if (!isset($_SESSION['id']) || $_SESSION['role'] != "visiteur") {
+            header("Location: ".$this->linkTo("login"));
+            exit; 
+        }
+
+        if(!isset($_GET['id'])){
+            header("Location: ".$this->linkTo("expense"));
+            exit; 
+        }
+
+        $expenseModel = new ExpenseModel();
+        $expenseModel->delete($_GET['id']);
+
+        header("Location: ".$this->linkTo("expense"));
+        exit;
+
     }
 
 }
