@@ -54,20 +54,39 @@ class ExpenseModel {
 
     public function getById($id) 
     {
-        $sql = "SELECT * FROM fichedefrais WHERE id = :id ;";
-        $req = $this->db->prepare($sql);
-        $req->bindParam(':id', $id);
-        $req->execute();
-        return $req->fetch($this->db::FETCH_ASSOC);
+        $sqlF = "SELECT * FROM fichedefrais WHERE id = :id ;";
+        $reqF = $this->db->prepare($sqlF);
+        $reqF->bindParam(':id', $id);
+        $reqF->execute();
+        $fichedefrais = $reqF->fetch($this->db::FETCH_ASSOC);
+
+        $sqlFF = "SELECT * FROM fraisforfait WHERE idFicheDeFrais = :id ;";
+        $reqFF = $this->db->prepare($sqlFF);
+        $reqFF->bindParam(':id', $id);
+        $reqFF->execute();
+        $fraisforfait = $reqFF->fetchAll($this->db::FETCH_ASSOC);
+
+        $sqlFH = "SELECT * FROM fraishorsforfait WHERE idFicheDeFrais = :id ;";
+        $reqFH = $this->db->prepare($sqlFH);
+        $reqFH->bindParam(':id', $id);
+        $reqFH->execute();
+        $fraishorsforfait = $reqFH->fetchAll($this->db::FETCH_ASSOC);
+
+        return [
+            'fichedefrais' => $fichedefrais,
+            'fraisforfait' => $fraisforfait,
+            'fraishorsforfait' => $fraishorsforfait
+        ];
     }
 
-    public function CreateExpense($userId, $ffnuite, $ffrepas, $ffkilo, $fraisHorsForfait) 
+    public function CreateExpense($userId, $ffnuite, $ffrepas, $ffkilo, $fraisHorsForfait, $tot) 
     {
-        $sqlFiche= "INSERT INTO `fichedefrais`(`mois`, `total`, `date`, `idUtilisateur`, `idEtat`) VALUES (MONTH(CURDATE()), 0, CURDATE(), :userId, 1);";
+        $sqlFiche= "INSERT INTO `fichedefrais`(`mois`, `total`, `date`, `idUtilisateur`, `idEtat`) VALUES (MONTH(CURDATE()), :tot, CURDATE(), :userId, 1);";
         
         $reqFiche = $this->db->prepare($sqlFiche);
         
         $reqFiche->bindParam('userId', $userId);
+        $reqFiche->bindParam('tot', $tot);
         
         $reqFiche->execute();
         $reqFiche->closeCursor();
@@ -140,6 +159,24 @@ class ExpenseModel {
         } else {
             return false;
         }
+    }
+
+    public function delete($id) 
+    {
+        $sqlFF = "DELETE FROM fraisforfait WHERE idFicheDeFrais = :id ;";
+        $reqFF = $this->db->prepare($sqlFF);
+        $reqFF->bindParam(':id', $id);
+        $reqFF->execute();
+
+        $sqlFH = "DELETE FROM fraishorsforfait WHERE idFicheDeFrais = :id ;";
+        $reqFH = $this->db->prepare($sqlFH);
+        $reqFH->bindParam(':id', $id);
+        $reqFH->execute();
+
+        $sqlF = "DELETE FROM fichedefrais WHERE id = :id ;";
+        $reqF = $this->db->prepare($sqlF);
+        $reqF->bindParam(':id', $id);
+        $reqF->execute();
     }
 
 }

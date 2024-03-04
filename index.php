@@ -37,6 +37,14 @@ switch($page){
 		$controller = new App\Controllers\ExpenseController();
 		$controller->add();
         break;
+	}case 'expense_edit' :{
+		$controller = new App\Controllers\ExpenseController();
+		$controller->edit();
+        break;
+	}case 'expense_delete' :{
+		$controller = new App\Controllers\ExpenseController();
+		$controller->delete();
+        break;
 	}case 'user' :{
 		$controller = new App\Controllers\UserController();
 		$controller->index();

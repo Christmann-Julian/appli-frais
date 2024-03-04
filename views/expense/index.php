@@ -17,8 +17,8 @@ $javascript=[
 </header>
 <div class="l-navbar" id="nav-bar">
     <nav class="nav">
-        <div> <a href="#" class="nav_logo"> 
-            <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Appli frais</span> </a>
+        <div> 
+            <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Appli frais</span> </a>
             <div class="nav_list"> 
                 <a href="<?= $this->linkTo('expense'); ?>" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Consulter</span> </a>
                 <?php if($_SESSION['role'] == "visiteur" ){ ?>
@@ -77,9 +77,9 @@ $javascript=[
                             <td><?php echo(\App\Helpers::convertMonth($e['mois'])) ?></td>
                             <td><?php echo($e['total']."€") ?></td>
                             <td>
-                                <a href="#" class="btn btn-primary me-1" role="button"><i class='bx bx-edit'></i></a>
+                                <a href="<?= $this->linkTo('expense_edit', 'id='.$e['id']); ?>" class="btn btn-primary me-1" role="button"><i class='bx bx-edit'></i></a>
                                 <?php if($_SESSION['role'] == "visiteur" ){ ?>
-                                    <a href="#" class="btn btn-danger" role="button"><i class='bx bx-trash'></i></a>
+                                    <a href="<?= $this->linkTo('expense_delete', 'id='.$e['id']); ?>" class="btn btn-danger" role="button"><i class='bx bx-trash'></i></a>
                                 <?php } ?>
                             </td>
                         </tr>
