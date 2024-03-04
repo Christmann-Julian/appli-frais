@@ -52,6 +52,26 @@ class ExpenseModel {
         return $req->fetchAll($this->db::FETCH_ASSOC);
     }
 
+    public function getAccessByUser($userId, $expenseId) 
+    {
+        $sql = "SELECT f.id, f.mois, f.total, f.date, e.libelle, u.nom, u.prenom  FROM fichedefrais AS f
+            JOIN utilisateurs AS u ON f.idUtilisateur = u.id
+            JOIN etat AS e ON f.idEtat = e.id
+            WHERE idUtilisateur = :userId && f.id = :expenseId ;";
+        $req = $this->db->prepare($sql);
+        $req->bindParam('userId', $userId);
+        $req->bindParam('expenseId', $expenseId);
+        $req->execute();
+
+        $rowCount = $req->rowCount();
+
+        if ($rowCount > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getById($id) 
     {
         $sqlF = "SELECT * FROM fichedefrais WHERE id = :id ;";

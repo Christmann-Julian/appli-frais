@@ -110,13 +110,14 @@ class ExpenseController extends Controller
             header("Location: ".$this->linkTo("login"));
             exit; 
         }
+        
+        $expenseModel = new ExpenseModel();
 
-        if(!isset($_GET['id'])){
+        if(!isset($_GET['id']) || !$expenseModel->getAccessByUser($_SESSION['id'], $_GET['id'])){
             header("Location: ".$this->linkTo("expense"));
             exit; 
         }
 
-        $expenseModel = new ExpenseModel();
         $expense = $expenseModel->getById($_GET['id']);
 
         $this->render('expense/edit.php', ['expense' => $expense]);
@@ -136,13 +137,14 @@ class ExpenseController extends Controller
             header("Location: ".$this->linkTo("login"));
             exit; 
         }
+        
+        $expenseModel = new ExpenseModel();
 
-        if(!isset($_GET['id'])){
+        if(!isset($_GET['id']) || !$expenseModel->getAccessByUser($_SESSION['id'], $_GET['id'])){
             header("Location: ".$this->linkTo("expense"));
             exit; 
         }
 
-        $expenseModel = new ExpenseModel();
         $expenseModel->delete($_GET['id']);
 
         header("Location: ".$this->linkTo("expense"));
