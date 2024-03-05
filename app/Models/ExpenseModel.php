@@ -181,6 +181,65 @@ class ExpenseModel {
         }
     }
 
+    public function editExpense($expenseId, $ffnuite, $ffrepas, $ffkilo, $fraisHorsForfait, $tot) 
+    {
+        $sqlFiche = "UPDATE `fichedefrais` SET `total`= :tot ,`date`= CURDATE() WHERE id = :expenseId";
+        
+        $reqFiche = $this->db->prepare($sqlFiche);
+        
+        $reqFiche->bindParam('expenseId', $expenseId);
+        $reqFiche->bindParam('tot', $tot);
+        
+        $reqFiche->execute();
+        $reqFiche->closeCursor();
+
+        $sqlFF = "UPDATE `fraisforfait` SET `quantite`= :ffnuiteQte,`montant`= :ffnuiteM,`total`= :ffnuiteTot WHERE id = :ffnuiteId ;
+                UPDATE `fraisforfait` SET `quantite`= :ffrepasQte,`montant`= :ffrepasM,`total`= :ffrepasTot WHERE id = :ffrepasId ;
+                UPDATE `fraisforfait` SET `quantite`= :ffkiloQte,`montant`= :ffkiloM,`total`= :ffkiloTot WHERE id = :ffkiloId ;";
+        
+        $reqFF = $this->db->prepare($sqlFF);
+
+        $reqFF->bindParam('ffnuiteId', $ffnuite['id']);
+        $reqFF->bindParam('ffnuiteQte',$ffnuite['qte']);
+        $reqFF->bindParam('ffnuiteM', $ffnuite['m']);
+        $reqFF->bindParam('ffnuiteTot', $ffnuite['tot']);
+
+        $reqFF->bindParam('ffrepasId', $ffrepas['id']);
+        $reqFF->bindParam('ffrepasQte',$ffrepas['qte']);
+        $reqFF->bindParam('ffrepasM', $ffrepas['m']);
+        $reqFF->bindParam('ffrepasTot', $ffrepas['tot']);
+
+        $reqFF->bindParam('ffkiloId', $ffkilo['id']);
+        $reqFF->bindParam('ffkiloQte',$ffkilo['qte']);
+        $reqFF->bindParam('ffkiloM', $ffkilo['m']);
+        $reqFF->bindParam('ffkiloTot', $ffkilo['tot']);
+
+        $reqFF->execute();
+        $reqFF->closeCursor();
+
+        if(!empty($fraisHorsForfait)){
+            $sqlFH = "";
+    
+            for($i=1; $i <= count($fraisHorsForfait); $i++) {
+                $sqlFH.="UPDATE `fraishorsforfait` SET `date`= :date".strval($i).",`libelle`= :libelle".strval($i).",`montant`= :montant".strval($i)." WHERE id = :id".strval($i)." ; ";
+            }
+
+            $reqFH = $this->db->prepare($sqlFH);
+
+            $k = 1;
+            foreach($fraisHorsForfait as $fh){
+                $reqFH->bindParam('id'.strval($k), $fh[0]);
+                $reqFH->bindParam('date'.strval($k), $fh[1]);
+                $reqFH->bindParam('libelle'.strval($k), $fh[2]);
+                $reqFH->bindParam('montant'.strval($k), $fh[3]);
+                $k++;
+            }
+
+            $reqFH->execute();
+            $reqFH->closeCursor();
+        }
+    }
+
     public function delete($id) 
     {
         $sqlFF = "DELETE FROM fraisforfait WHERE idFicheDeFrais = :id ;";

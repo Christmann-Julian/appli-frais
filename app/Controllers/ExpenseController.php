@@ -120,6 +120,47 @@ class ExpenseController extends Controller
 
         $expense = $expenseModel->getById($_GET['id']);
 
+        if(isset($_POST["ffnuite"]) && isset($_POST["ffnuiteQte"]) && isset($_POST["ffnuiteM"]) && isset($_POST["ffnuiteTot"])
+        && isset($_POST["ffrepas"]) && isset($_POST["ffrepasQte"]) && isset($_POST["ffrepasM"]) && isset($_POST["ffrepasTot"])
+        && isset($_POST["ffkilo"]) && isset($_POST["ffkiloQte"]) && isset($_POST["ffkiloM"]) && isset($_POST["ffkiloTot"])
+        ){
+            $ffnuite = array();
+            $ffnuite['id'] = $expense['fraisforfait'][0]['id'];
+            $ffnuite["l"] = htmlspecialchars($_POST["ffnuite"]);
+            $ffnuite["qte"] = intval(htmlspecialchars($_POST["ffnuiteQte"]));
+            $ffnuite["m"] = floatval(number_format(htmlspecialchars($_POST["ffnuiteM"]), 2));
+            $ffnuite["tot"] = floatval(number_format(htmlspecialchars($_POST["ffnuiteTot"]), 2));
+
+            $ffrepas = array();
+            $ffrepas['id'] = $expense['fraisforfait'][1]['id'];
+            $ffrepas["l"] = htmlspecialchars($_POST["ffrepas"]);
+            $ffrepas["qte"] = intval(htmlspecialchars($_POST["ffrepasQte"]));
+            $ffrepas["m"] = floatval(number_format(htmlspecialchars($_POST["ffrepasM"]), 2));
+            $ffrepas["tot"] = floatval(number_format(htmlspecialchars($_POST["ffrepasTot"]), 2));
+
+            $ffkilo = array();
+            $ffkilo['id'] = $expense['fraisforfait'][2]['id'];
+            $ffkilo["l"] = htmlspecialchars($_POST["ffkilo"]);
+            $ffkilo["qte"] = intval(htmlspecialchars($_POST["ffkiloQte"]));
+            $ffkilo["m"] = floatval(number_format(htmlspecialchars($_POST["ffkiloM"]), 2));
+            $ffkilo["tot"] = floatval(number_format(htmlspecialchars($_POST["ffkiloTot"]), 2));
+
+            $i = 0;
+            $fraisHorsForfait = array();
+            $tot = $ffnuite["tot"] + $ffrepas["tot"] + $ffkilo["tot"];
+
+            while(isset($expense['fraishorsforfait'][$i])){
+                $idFraisHorsForfait = $expense['fraishorsforfait'][$i]['id'];
+                $fraisHorsForfait[$i]=[$idFraisHorsForfait, $_POST['fhdate'.$idFraisHorsForfait], $_POST['fhlib'.$idFraisHorsForfait], $_POST['fhM'.$idFraisHorsForfait]];
+                $tot+=$_POST['fhM'.$idFraisHorsForfait];
+                $i++;
+            }
+
+            $expenseModel = new ExpenseModel();
+            $expenseModel->editExpense( $expense['fichedefrais']['id'], $ffnuite, $ffrepas, $ffkilo, $fraisHorsForfait, $tot);
+            $expense = $expenseModel->getById($_GET['id']);
+        }
+
         $this->render('expense/edit.php', ['expense' => $expense]);
         return $this;
     }

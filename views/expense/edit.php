@@ -6,7 +6,7 @@ $css=[
 ];
 $javascript=[
     '<script src="assets/js/main.js"></script>',
-    
+    '<script src="assets/js/form.js"></script>',
     '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>',
     '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>'
 ];
@@ -36,7 +36,7 @@ $javascript=[
 </div>
 <div class="height-100 container">
     <h4>Frais forfait</h4>
-    <form id="formAdd" action="index.php?page=expense_edit" method="post">
+    <form id="formAdd" action="index.php?page=expense_edit&id=<?php echo($expense['fichedefrais']['id']) ?>" method="post">
         <div class="row">
             <div class="col-md-3 col-sm-12 mb-3">
                 <label for="ffnuite" class="form-label">Frais</label>
