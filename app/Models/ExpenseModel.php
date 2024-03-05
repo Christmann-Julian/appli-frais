@@ -99,6 +99,36 @@ class ExpenseModel {
         ];
     }
 
+    public function getAllState() 
+    {
+        $sql = "SELECT * FROM etat;";
+        $req = $this->db->prepare($sql);
+        $req->execute();
+        return $req->fetchAll($this->db::FETCH_ASSOC);
+    }
+
+    public function getStateBy($id) 
+    {
+        $sql = "SELECT * FROM etat WHERE id = :id ;";
+        $req = $this->db->prepare($sql);
+        $req->bindParam(':id', $id);
+        $req->execute();
+        return $req->fetch($this->db::FETCH_ASSOC);
+    }
+
+    public function changeState($idEtat, $idFicheDeFrais)
+    {
+        $sql = "UPDATE `fichedefrais` SET `idEtat`= :idEtat WHERE id = :idFicheDeFrais ;";
+        
+        $req = $this->db->prepare($sql);
+        
+        $req->bindParam('idEtat', $idEtat);
+        $req->bindParam('idFicheDeFrais', $idFicheDeFrais);
+        
+        $req->execute();
+        $req->closeCursor();
+    }
+
     public function CreateExpense($userId, $ffnuite, $ffrepas, $ffkilo, $fraisHorsForfait, $tot) 
     {
         $sqlFiche= "INSERT INTO `fichedefrais`(`mois`, `total`, `date`, `idUtilisateur`, `idEtat`) VALUES (MONTH(CURDATE()), :tot, CURDATE(), :userId, 1);";

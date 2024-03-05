@@ -113,12 +113,14 @@ class ExpenseController extends Controller
         
         $expenseModel = new ExpenseModel();
 
-        if(!isset($_GET['id']) || !$expenseModel->getAccessByUser($_SESSION['id'], $_GET['id'])){
+        if(!isset($_GET['id']) || (!$expenseModel->getAccessByUser($_SESSION['id'], $_GET['id']) && $_SESSION['role'] != "compta")){
             header("Location: ".$this->linkTo("expense"));
             exit; 
         }
 
         $expense = $expenseModel->getById($_GET['id']);
+        $states = $expenseModel->getAllState();
+        $currentState = $expenseModel->getStateBy($expense['fichedefrais']['idEtat']);
 
         if(isset($_POST["ffnuite"]) && isset($_POST["ffnuiteQte"]) && isset($_POST["ffnuiteM"]) && isset($_POST["ffnuiteTot"])
         && isset($_POST["ffrepas"]) && isset($_POST["ffrepasQte"]) && isset($_POST["ffrepasM"]) && isset($_POST["ffrepasTot"])
@@ -161,7 +163,17 @@ class ExpenseController extends Controller
             $expense = $expenseModel->getById($_GET['id']);
         }
 
-        $this->render('expense/edit.php', ['expense' => $expense]);
+        if(isset($_POST["etat"])){
+            $idState = htmlspecialchars($_POST["etat"]);
+            $expenseModel->changeState($idState, $expense['fichedefrais']['id']);
+            $currentState = $expenseModel->getStateBy($idState);
+        }
+
+        $this->render('expense/edit.php', [
+            'expense' => $expense,
+            'states'  => $states,
+            'currentState' => $currentState
+        ]);
         return $this;
     }
 

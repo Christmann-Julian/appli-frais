@@ -140,6 +140,19 @@ $javascript=[
                 <button type="submit" class="btn btn-primary mb-2">Modifier fiche de frais</button>
             </div>
             <div class="col-md-6 col-sm-12 flex-right-col">
+                <?php if($_SESSION['role'] == "compta" ){ ?>
+                    <form id="formState" action="index.php?page=expense_edit&id=<?php echo($expense['fichedefrais']['id']) ?>" method="post">
+                        <select class="form-select me-3" name="etat">
+                            <option selected><?php echo($currentState['libelle']) ?></option>
+                            <?php foreach($states as $state){ ?>
+                                <?php if($state['id'] != $currentState['id']){ ?>
+                                    <option value="<?php echo($state['id']) ?>"><?php echo($state['libelle']) ?></option>
+                                <?php } ?>
+                            <?php } ?>
+                        </select>
+                        <button type="submit" class="btn btn-primary">changer</button>
+                    </form>
+                <?php } ?>
                 <!-- <button class="btn btn-primary me-2 mb-2" onclick="addHf()">Ajouter ligne Frais hors Forfait</button>
                 <button class="btn btn-danger mb-2" onclick="deleteHf()">Supprimer ligne hors forfait</button> -->
             </div>
