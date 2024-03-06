@@ -39,10 +39,10 @@ $javascript=[
             <h4>Mes frais</h4>
         </div>
         <div class="col-md-6 col-sm-12 flex-right-col">
-            <form action="#" method="post">
+            <form action="index.php?page=expense" method="post">
                 <div class="row">
                     <div class="col-md-6 col-sm-12 mb-3">
-                        <input name="search" id="search" class="form-control" type="text" placeholder="Rechercher" required>
+                        <input name="search" id="search" class="form-control" type="text" placeholder="Rechercher">
                     </div>
                     <div class="col-md-6 col-sm-12 mb-3">
                         <button type="submit" class="btn btn-primary">Rechercher</button>

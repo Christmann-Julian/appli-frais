@@ -37,6 +37,20 @@ class ExpenseController extends Controller
             $expenses = $expenseModel->getAll();
         }
 
+        if(isset($_POST['search'])){
+
+            if($_POST['search'] == ""){
+                if($_SESSION['role'] == "visiteur"){
+                    $expenses = $expenseModel->getAllByUser($_SESSION['id']);
+                }else{
+                    $expenses = $expenseModel->getAll();
+                }
+            }else{
+                $expenses = $expenseModel->getBySearch($_POST['search']);
+            }
+            
+        }
+
         $this->render('expense/index.php', [
             "expenses" => $expenses
         ]);

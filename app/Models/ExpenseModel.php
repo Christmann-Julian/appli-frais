@@ -99,6 +99,19 @@ class ExpenseModel {
         ];
     }
 
+    public function getBySearch($search)
+    {
+        $search = "%".$search."%";
+        $sql = "SELECT f.id, f.mois, f.total, f.date, e.libelle, u.nom, u.prenom FROM `fichedefrais` AS f 
+                JOIN utilisateurs AS u ON f.idUtilisateur = u.id
+                JOIN etat AS e ON e.id = f.idEtat
+                WHERE f.mois LIKE :search OR u.nom LIKE :search OR u.prenom LIKE :search OR e.libelle LIKE :search  ;";
+        $req = $this->db->prepare($sql);
+        $req->bindParam(':search', $search);
+        $req->execute();
+        return $req->fetchAll($this->db::FETCH_ASSOC);
+    }
+
     public function getAllState() 
     {
         $sql = "SELECT * FROM etat;";
