@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 04 mars 2024 à 15:50
+-- Généré le : lun. 11 mars 2024 à 16:24
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -40,7 +40,8 @@ INSERT INTO `etat` (`id`, `libelle`) VALUES
 (1, 'En cours'),
 (2, 'Clôturée'),
 (3, 'Validée'),
-(4, 'Remboursée');
+(4, 'Remboursée'),
+(5, 'Mise en paiement');
 
 -- --------------------------------------------------------
 
@@ -57,13 +58,6 @@ CREATE TABLE `fichedefrais` (
   `idEtat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Déchargement des données de la table `fichedefrais`
---
-
-INSERT INTO `fichedefrais` (`id`, `mois`, `total`, `date`, `idUtilisateur`, `idEtat`) VALUES
-(1, '3', 102, '2024-03-04', 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -79,15 +73,6 @@ CREATE TABLE `fraisforfait` (
   `idFicheDeFrais` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Déchargement des données de la table `fraisforfait`
---
-
-INSERT INTO `fraisforfait` (`id`, `libelle`, `quantite`, `montant`, `total`, `idFicheDeFrais`) VALUES
-(1, 'Nuitée', 4, 3, 12, 1),
-(2, 'Repas Midi', 5, 2, 10, 1),
-(3, 'Kilométrage', 2, 3, 6, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -101,14 +86,6 @@ CREATE TABLE `fraishorsforfait` (
   `montant` float NOT NULL,
   `idFicheDeFrais` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `fraishorsforfait`
---
-
-INSERT INTO `fraishorsforfait` (`id`, `date`, `libelle`, `montant`, `idFicheDeFrais`) VALUES
-(1, '2024-03-21', 'fourniture de bureau', 17, 1),
-(2, '2024-03-07', 'matérielle médical', 57, 1);
 
 -- --------------------------------------------------------
 
@@ -181,25 +158,25 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT pour la table `etat`
 --
 ALTER TABLE `etat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `fichedefrais`
 --
 ALTER TABLE `fichedefrais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `fraisforfait`
 --
 ALTER TABLE `fraisforfait`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `fraishorsforfait`
 --
 ALTER TABLE `fraishorsforfait`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
